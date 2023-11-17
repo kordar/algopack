@@ -68,11 +68,10 @@ func (yol Yolov5Pack) Execute(params Params, image ImageExec, annotations []Anno
 
 	var imgFilepath string
 	var txtFilepath string
-	ii := 0
+	index := ""
 	if args[0] != nil {
-		ii = args[0].(int)
+		index = args[0].(string)
 	}
-	index := fmt.Sprintf("%08d", ii+1)
 	if toVal {
 		imgFilepath = path.Join(params.BasePath, index, "images", "val", imgName)
 		txtFilepath = path.Join(params.BasePath, index, "labels", "val", txtFileName)
@@ -154,8 +153,7 @@ func (yol Yolov5Pack) sg(params Params) {
 
 	trainPaths := make([]string, 0)
 	valPaths := make([]string, 0)
-	for i := range params.Subs {
-		index := fmt.Sprintf("%08d", i+1)
+	for _, index := range params.Subs {
 		imgTrainFilepath := path.Join(params.BasePath, index, "images", "train")
 		imgValFilepath := path.Join(params.BasePath, index, "images", "val")
 		MkdirAll([]string{
