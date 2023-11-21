@@ -33,6 +33,7 @@ type Annotation struct {
 	Shape  string // 标识标注类型: rectangle表示标注矩形，polygon标注多边形
 	Group  AnnotationGroup
 	Points string
+	Id     int
 }
 
 type DemoImage struct {

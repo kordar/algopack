@@ -56,7 +56,7 @@ func (yol Yolov5Pack) Execute(params Params, image ImageExec, annotations []Anno
 
 		if x > 1 || y > 1 || w > 1 || h > 1 {
 			log.Printf("标注坐标错误:%+v\n", annotation)
-			return labelIdCount, errors.New(fmt.Sprintf("%s:[x=%f,y=%f,w=%f,h=%f]标注坐标错误", imgName, x, y, w, h))
+			return labelIdCount, errors.New(fmt.Sprintf("annId=%d, %s:[x=%f,y=%f,w=%f,h=%f]标注坐标错误", annotation.Id, imgName, x, y, w, h))
 		}
 
 		content += fmt.Sprintf("%d %f %f %f %f\n", labelIndex, x, y, w, h)
