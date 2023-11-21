@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"log"
+	"math"
 	"path"
 	"path/filepath"
 	"strconv"
@@ -47,8 +48,8 @@ func (yol Yolov5Pack) Execute(params Params, image ImageExec, annotations []Anno
 		dh := float64(1) / float64(image.Height())
 		x := float64(annotation.X1+annotation.X2) / 2.0
 		y := float64(annotation.Y1+annotation.Y2) / 2.0
-		w := float64(annotation.X2 - annotation.X1)
-		h := float64(annotation.Y2 - annotation.Y1)
+		w := math.Abs(float64(annotation.X2 - annotation.X1))
+		h := math.Abs(float64(annotation.Y2 - annotation.Y1))
 		x = x * dw
 		w = w * dw
 		y = y * dh
